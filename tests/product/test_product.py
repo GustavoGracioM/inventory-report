@@ -7,14 +7,6 @@ data_de_validade = "28/10/2023"
 numero_de_serie = "ABC1234"
 instrucoes_de_armazenamento = "Geladeira"
 
-result_print = (
-    f"O produto {nome_do_produto}"
-    f" fabricado em {data_de_fabricacao}"
-    f" por {nome_da_empresa} com validade"
-    f" até {data_de_validade}"
-    f" precisa ser armazenado {instrucoes_de_armazenamento}."
-)
-
 
 def test_cria_produto():
     new_product = Product(
@@ -26,4 +18,11 @@ def test_cria_produto():
         numero_de_serie,
         instrucoes_de_armazenamento,
     )
-    assert str(new_product) == result_print
+    assert new_product.nome_do_produto == nome_do_produto
+    assert new_product.nome_da_empresa == nome_da_empresa
+    assert new_product.data_de_fabricacao == data_de_fabricacao
+    assert new_product.data_de_validade == data_de_validade
+    assert new_product.numero_de_serie == numero_de_serie
+    assert (
+        new_product.instrucoes_de_armazenamento == instrucoes_de_armazenamento
+    )

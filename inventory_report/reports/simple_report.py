@@ -20,18 +20,20 @@ class SimpleReport:
 
     @staticmethod
     def company_more_products(products: list):
-        nome_da_empresa = list(
+        return list(
             collections.Counter(
                 [value["nome_da_empresa"] for value in products]
             ).items()
         )
-        return max(nome_da_empresa, key=lambda item: item[1])
 
     @staticmethod
     def generate(products: list):
         data_de_fabricacao = SimpleReport.earliest_manufacturing_date(products)
         data_de_validade = SimpleReport.closest_expiration_date(products)
-        nome_empresa = SimpleReport.company_more_products(products)[0]
+        nome_empresa = max(
+            SimpleReport.company_more_products(products),
+            key=lambda item: item[1],
+        )[0]
         return (
             f"Data de fabricação mais antiga: {data_de_fabricacao}\n"
             f"Data de validade mais próxima: {data_de_validade}\n"

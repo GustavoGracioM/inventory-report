@@ -20,12 +20,7 @@ class Inventory:
                 products = json.load(file)
         elif extension == ".xml":
             with open(path) as fd:
-                products = xmltodict.parse(fd.read())['dataset']['record']
+                products = xmltodict.parse(fd.read())["dataset"]["record"]
         else:
             raise ValueError()
         return type_class.generate(products)
-
-
-if __name__ == "__main__":
-    SimpleReport()
-    CompleteReport()
